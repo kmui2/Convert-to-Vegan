@@ -1,11 +1,10 @@
 var elements = document.getElementsByTagName('*');
 
-for (var i = 0; i < elements.length; i++) {
-    var element = elements[i];
+for (var element of elements) {
 
-    for (var j = 0; j < element.childNodes.length; j++) {
-        var node = element.childNodes[j];
+    for (var node of element.childNodes) { 
 
+        // get text part of the element
         if (node.nodeType === 3) {
             var text = node.nodeValue;
             var replacedText = text.replace(/Trump/gi, 'Beef');
