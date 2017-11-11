@@ -8,6 +8,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 	}
 	else{
 		chrome.browserAction.setIcon({path: "off.png", tabId:tab.id}); //off
-		chrome.tabs.executeScript(tab.id, {code:"alert()"});
+		//chrome.tabs.executeScript(tab.id, {code:"alert()"});
 	}
 });
