@@ -4,8 +4,7 @@
     "description": "Replaces Trump to Beef",
     "version": "1.0",
     "browser_action": {
-        "default_icon": "icon.png",
-        "default_popup": "popup.html"
+        "default_icon": "off.png"
     },
     "content_scripts": [
         {
