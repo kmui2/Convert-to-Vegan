@@ -1,1 +1,1 @@
-This is your Chrome extension which replaces a word or phrase with a different word or phrase. 
+This is a chrome extension to replace non-vegan ingredients on webpages with vegan ones. The intent of this extension is to aid any vegan chefs in converting recipes of dishes they crave, into dishes that they can enjoy.
