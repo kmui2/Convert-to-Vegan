@@ -1,17 +1,6 @@
 var script = document.createElement('script');
-script.src = "https://www.gstatic.com/firebasejs/4.6.2/firebase.js";
+script.src = "https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js";
 script.addEventListener('load', function() {
-  // SomeObject is available!!!
-  // Initialize Firebase
-  var config = {
-  apiKey: "AIzaSyAL8RlZzUfXn18VzMCCooXE7Q58lnRpYVM",
-  authDomain: "convert-to-vegan.firebaseapp.com",
-  databaseURL: "https://convert-to-vegan.firebaseio.com",
-  projectId: "convert-to-vegan",
-  storageBucket: "convert-to-vegan.appspot.com",
-  messagingSenderId: "200949757458"
-  };
-  firebase.initializeApp(config);
   
   var elements = document.getElementsByTagName('*');
   
