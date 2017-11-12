@@ -1,0 +1,100 @@
+{
+    "milk" : [
+        "soymilk",
+        "rice milk",
+        "oat milk",
+        "hemp milk",
+        "nut milk"
+    ],
+    "ricotta" : [
+        "crumbled tofu" ,
+        "soaked raw nuts" 
+    ],
+    "mozzarella" : [
+        "daiya mozzarella" 
+    ],
+    "cream cheese" : [
+        "daiya cream cheese" 
+    ],
+    "cheese" : [
+        "vegan cheese" 
+    ],
+    "egg yolk" : [
+        "olive oil" 
+    ],
+    "egg white" : [
+        "aguafaba" 
+    ],
+    "egg" : [
+        "applesauce" ,
+        "pureed soft tofu" ,
+        "Ener-G" ,
+        "1 tablespoon ground flax seeds plus 3 tablespoons water or other liquid, blended" ,
+        "mashed bananas" 
+    ],
+    "eggs (binding)" : [
+        "oat flour" ,
+        "bread crumbs" ,
+        "instant potatoes" ,
+        "tomato paste" 
+    ],
+    "beef stock" : [
+        "vegetable stock" 
+    ],
+    "chicken stock" : [
+        "vegetable stock" 
+    ],
+    "beef" : [
+        "tofu" 
+    ],
+    "butter" : [
+        "vegan butter" ,
+        "coconut oil" 
+    ],
+    "yogurt" : [
+        "vegan yogurt" 
+    ],
+    "sour cream" : [
+        "vegan yogurt" ,
+        "blended silken yogurt" 
+    ],
+    "mayonnaise" : [
+        "vegan mayonnaise" 
+    ],
+    "gelatin" : [
+        "agar" 
+    ],
+    "honey" : [
+        "maple syrup" ,
+        "agave nectar" ,
+        "molasses" 
+    ],
+    "chocolate" : [
+        "vegan chocolate" 
+    ],
+    "ice cream" : [
+        "vegan ice cream" 
+    ],
+    "cream" : [
+        "full-fat coconut milk" 
+    ],
+    "beef" : [
+        "eggplant" ,
+        "mushroom" 
+    ],
+    "turkey" : [
+        "tofurkey" 
+    ],
+    "pork" : [
+        "jackfruit" 
+    ],
+    "chicken" : [
+        "tempeh" 
+    ],
+    "lamb" : [
+        "seitan" 
+    ],
+    "fish stock" : [
+        "steeped kombu" 
+    ]
+}
