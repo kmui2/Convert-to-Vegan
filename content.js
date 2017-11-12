@@ -151,7 +151,12 @@ function convertToVegan() {
                     var replacedText = text.replace(newRegex, veganMap[nonVegan][0]);
 
                     if (replacedText !== text) {
-                        element.replaceChild(document.createTextNode(replacedText), node);
+                        var currSelect = element.appendChild(document.createElement("SELECT"), node);
+                        for (var alternative in veganMap[nonVegan]) {
+                            var option = document.createElement("option");
+                            option.text = veganMap[nonVegan][alternative];
+                            currSelect.add(option);
+                        }
                     }
                 }
             }
