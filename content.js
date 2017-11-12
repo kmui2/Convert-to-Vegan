@@ -1,6 +1,109 @@
 var script = document.createElement('script');
 var toggle = false;
 var prevToggle = false; // prevents duplicate messages
+
+// setting the values
+var veganMap  = {
+    "milk" : [
+        "soymilk",
+        "rice milk",
+        "oat milk",
+        "hemp milk",
+        "nut milk"
+    ],
+    "ricotta" : [
+        "crumbled tofu" ,
+        "soaked raw nuts" 
+    ],
+    "mozzarella" : [
+        "daiya mozzarella" 
+    ],
+    "cream cheese" : [
+        "daiya cream cheese" 
+    ],
+    "cheese" : [
+        "vegan cheese" 
+    ],
+    "egg yolk" : [
+        "olive oil" 
+    ],
+    "egg white" : [
+        "aguafaba" 
+    ],
+    "egg" : [
+        "applesauce" ,
+        "pureed soft tofu" ,
+        "Ener-G" ,
+        "1 tablespoon ground flax seeds plus 3 tablespoons water or other liquid, blended" ,
+        "mashed bananas" 
+    ],
+    "eggs (binding)" : [
+        "oat flour" ,
+        "bread crumbs" ,
+        "instant potatoes" ,
+        "tomato paste" 
+    ],
+    "beef stock" : [
+        "vegetable stock" 
+    ],
+    "chicken stock" : [
+        "vegetable stock" 
+    ],
+    "beef" : [
+        "tofu" 
+    ],
+    "butter" : [
+        "vegan butter" ,
+        "coconut oil" 
+    ],
+    "yogurt" : [
+        "vegan yogurt" 
+    ],
+    "sour cream" : [
+        "vegan yogurt" ,
+        "blended silken yogurt" 
+    ],
+    "mayonnaise" : [
+        "vegan mayonnaise" 
+    ],
+    "gelatin" : [
+        "agar" 
+    ],
+    "honey" : [
+        "maple syrup" ,
+        "agave nectar" ,
+        "molasses" 
+    ],
+    "chocolate" : [
+        "vegan chocolate" 
+    ],
+    "ice cream" : [
+        "vegan ice cream" 
+    ],
+    "cream" : [
+        "full-fat coconut milk" 
+    ],
+    "beef" : [
+        "eggplant" ,
+        "mushroom" 
+    ],
+    "turkey" : [
+        "tofurkey" 
+    ],
+    "pork" : [
+        "jackfruit" 
+    ],
+    "chicken" : [
+        "tempeh" 
+    ],
+    "lamb" : [
+        "seitan" 
+    ],
+    "fish stock" : [
+        "steeped kombu" 
+    ]
+}
+
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         toggle = request.toggle;
@@ -19,106 +122,7 @@ chrome.runtime.onMessage.addListener(
 );
 
 function convertToVegan() {
-    var elements = document.getElementsByTagName('*');
 
-    // setting the values
-    var veganMap  = {
-        "milk" : [
-            {"soymilk": "1"},
-            {"rice milk": "1"},
-            {"oat milk": "1"},
-            {"hemp milk": "1"},
-            {"nut milk": "1"}
-        ],
-        "ricotta" : [
-            {"crumbled tofu" : "1"},
-            {"soaked raw nuts" : "1"}
-        ],
-        "mozzarella" : [
-            {"daiya mozzarella" : "1"}
-        ],
-        "cream cheese" : [
-            {"daiya cream cheese" : "1"}
-        ],
-        "cheese" : [
-            {"vegan cheese" : "1"}
-        ],
-        "eggs (baking)" : [
-            {"applesauce" : "1"},
-            {"pureed soft tofu" : "1"},
-            {"Ener-G" : "1"},
-            {"1 tablespoon ground flax seeds plus 3 tablespoons water or other liquid, blended" : "1"},
-            {"mashed bananas" : "1"}
-        ],
-        "eggs (binding)" : [
-            {"oat flour" : "1"},
-            {"bread crumbs" : "1"},
-            {"instant potatoes" : "1"},
-            {"tomato paste" : "1"}
-        ],
-        "eggs white" : [
-            {"aguafaba" : "1"}
-        ],
-        "beef stock" : [
-            {"vegetable stock" : "1"}
-        ],
-        "chicken stock" : [
-            {"vegetable stock" : "1"}
-        ],
-        "beef" : [
-            {"tofu" : "1"}
-        ],
-        "butter" : [
-            {"vegan butter" : "1"},
-            {"coconut oil" : "1"}
-        ],
-        "yogurt" : [
-            {"vegan yogurt" : "1"}
-        ],
-        "sour cream" : [
-            {"vegan yogurt" : "1"},
-            {"blended silken yogurt" : "1"}
-        ],
-        "mayonnaise" : [
-            {"vegan mayonnaise" : "1"}
-        ],
-        "gelatin" : [
-            {"agar" : "1"}
-        ],
-        "honey" : [
-            {"maple syrup" : "1"},
-            {"agave nectar" : "1"},
-            {"molasses" : "1"}
-        ],
-        "chocolate" : [
-            {"vegan chocolate" : "1"}
-        ],
-        "ice cream" : [
-            {"vegan ice cream" : "1"}
-        ],
-        "cream" : [
-            {"full-fat coconut milk" : "1"}
-        ],
-        "beef" : [
-            {"eggplant" : "1"},
-            {"mushroom" : "1"}
-        ],
-        "turkey" : [
-            {"tofurkey" : "1"}
-        ],
-        "pork" : [
-            {"jackfruit" : "1"}
-        ],
-        "chicken" : [
-            {"tempeh" : "1"}
-        ],
-        "lamb" : [
-            {"seitan" : "1"}
-        ],
-        "fish stock" : [
-            {"steeped kombu" : "1"}
-        ]
-    }
     var elements = document.getElementsByTagName('*');
     for (var nonVegan in veganMap) {
         for (var element of elements) {
@@ -126,8 +130,25 @@ function convertToVegan() {
                 // get text part of the element
                 if (node.nodeType === 3) {
                     var text = node.nodeValue;
-                    var newRegex = new RegExp('[\w-]*' + nonVegan + '[\w-]*', "gi");
-                    var replacedText = text.replace(newRegex, Object.keys(veganMap[nonVegan][0]));
+                    var newRegex;
+                    if (nonVegan.includes(" ")) {
+                        var nonVeganSplitList = nonVegan.split(" ");
+                        var regexBuilder = '';
+                        var isFirst = true;
+                        for (var word of nonVeganSplitList) {
+                            if (isFirst) {
+                                regexBuilder += word;
+                                isFirst = false;
+                            } else {
+                                regexBuilder += ' ' + word;
+                            }
+                            regexBuilder += 's?';
+                        }
+                        newRegex = new RegExp(regexBuilder, "gi");
+                    } else {
+                        newRegex = new RegExp('[\\w-]*' + nonVegan + 's?[\\w-]*', "gi");
+                    }
+                    var replacedText = text.replace(newRegex, veganMap[nonVegan][0]);
 
                     if (replacedText !== text) {
                         element.replaceChild(document.createTextNode(replacedText), node);
@@ -140,20 +161,31 @@ function convertToVegan() {
 
 function convertBack() {
     var elements = document.getElementsByTagName('*');
-
-    // setting the values
-    var veganMap = {
-        "egg": "tofu",
-        "milk": "almondmilk"
-    }
-    var elements = document.getElementsByTagName('*');
     for (var nonVegan in veganMap) {
         for (var element of elements) {
             for (var node of element.childNodes) {
                 // get text part of the element
                 if (node.nodeType === 3) {
+
                     var text = node.nodeValue;
-                    var newRegex = new RegExp('[\w-]*' + veganMap[nonVegan] + '[\w-]*', "gi");
+                    var newRegex;
+                    if (veganMap[nonVegan][0].includes(" ")) {
+                        var veganSplitList = veganMap[nonVegan][0].split(" ");
+                        var regexBuilder = '';
+                        var isFirst = true;
+                        for (var word of veganSplitList) {
+                            if (isFirst) {
+                                regexBuilder += word;
+                                isFirst = false;
+                            } else {
+                                regexBuilder += ' ' + word;
+                            }
+                            regexBuilder += 's?';
+                        }
+                        newRegex = new RegExp(regexBuilder, "gi");
+                    } else {
+                        newRegex = new RegExp('[\\w-]*' + veganMap[nonVegan][0] + 's?[\\w-]*', "gi");
+                    }
                     var replacedText = text.replace(newRegex, nonVegan);
 
                     if (replacedText !== text) {
